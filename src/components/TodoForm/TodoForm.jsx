@@ -27,7 +27,7 @@ function TodoForm({ addTask }) {
           className="form-control"
           value={taskName}
           onChange={handleInputChange}
-          placeholder="Enter task"
+          placeholder="Введите задачу"
         />
       </div>
       <button type="submit" className="btn btn-primary">Add Task</button>

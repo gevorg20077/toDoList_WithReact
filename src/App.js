@@ -16,13 +16,17 @@ function App() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = (taskName) => {
-    setTasks([...tasks, { text: taskName, completed: false }]);
+  const generateId = () => {
+    return Date.now().toString() + Math.random().toString(36).substr(2, 9);
   };
 
-  const toggleTaskCompletion = (index) => {
-    const newTasks = tasks.map((task, i) => {
-      if (i === index) {
+  const addTask = (taskName) => {
+    setTasks([...tasks, { id: generateId(), text: taskName, completed: false }]);
+  };
+
+  const toggleTaskCompletion = (id) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === id) {
         return { ...task, completed: !task.completed };
       }
       return task;
@@ -30,14 +34,14 @@ function App() {
     setTasks(newTasks);
   };
 
-  const deleteTask = (index) => {
-    const newTasks = tasks.filter((_, i) => i !== index);
+  const deleteTask = (id) => {
+    const newTasks = tasks.filter((task) => task.id !== id);
     setTasks(newTasks);
   };
 
-  const editTask = (index, newText) => {
-    const newTasks = tasks.map((task, i) => {
-      if (i === index) {
+  const editTask = (id, newText) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === id) {
         return { ...task, text: newText };
       }
       return task;

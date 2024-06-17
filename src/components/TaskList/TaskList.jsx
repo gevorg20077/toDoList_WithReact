@@ -3,16 +3,16 @@ import React from 'react';
 function TaskList({ tasks, toggleTaskCompletion, deleteTask, editTask }) {
   return (
     <ul className="list-group">
-      {tasks.map((task, index) => (
+      {tasks.map((task) => (
         <li
-          key={index}
+          key={task.id}
           className={`list-group-item d-flex justify-content-between align-items-center ${task.completed ? 'completed' : ''}`}
         >
           <Task
             task={task}
-            toggleTaskCompletion={() => toggleTaskCompletion(index)}
-            deleteTask={() => deleteTask(index)}
-            editTask={(newText) => editTask(index, newText)}
+            toggleTaskCompletion={() => toggleTaskCompletion(task.id)}
+            deleteTask={() => deleteTask(task.id)}
+            editTask={(newText) => editTask(task.id, newText)}
           />
         </li>
       ))}
