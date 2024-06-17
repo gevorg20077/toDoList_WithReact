@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { v4 as uuidv4 } from 'uuid';
 import TodoForm from './components/TodoForm/TodoForm';
 import TaskList from './components/TaskList/TaskList';
 
@@ -16,12 +17,8 @@ function App() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const generateId = () => {
-    return Date.now().toString() + Math.random().toString(36).substr(2, 9);
-  };
-
   const addTask = (taskName) => {
-    setTasks([...tasks, { id: generateId(), text: taskName, completed: false }]);
+    setTasks([...tasks, { id: uuidv4(), text: taskName, completed: false }]);
   };
 
   const toggleTaskCompletion = (id) => {

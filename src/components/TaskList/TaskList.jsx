@@ -1,6 +1,7 @@
 import React from 'react';
 
 function TaskList({ tasks, toggleTaskCompletion, deleteTask, editTask }) {
+  console.log(tasks)
   return (
     <ul className="list-group">
       {tasks.map((task) => (
